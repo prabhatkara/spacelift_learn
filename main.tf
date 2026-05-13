@@ -6,7 +6,10 @@ terraform {
     }
   }
 }
-
+variable "subnet_id" {
+  type        = string
+  description = "ID of the subnet from networking stack"
+}
 provider "aws" {
   region = "us-east-1"
 }
@@ -30,10 +33,7 @@ resource "aws_subnet" "main" {
 }
 
 
-variable "subnet_id" {
-  type        = string
-  description = "ID of the subnet from networking stack"
-}
+
 data "aws_subnet" "selected" {
   id = var.subnet_id
 }
