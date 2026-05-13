@@ -29,10 +29,7 @@ resource "aws_subnet" "main" {
   }
 }
 
-output "subnet_id" {
-  value       = aws_subnet.main.id
-  description = "ID of the main subnet"
-}
+
 variable "subnet_id" {
   type        = string
   description = "ID of the subnet from networking stack"
@@ -54,4 +51,8 @@ resource "aws_security_group" "app" {
     name    = "Orbit Labs App SG"
     project = "Orbit-labs"
   }
+}
+output "subnet_id" {
+  value       = aws_subnet.main.id
+  description = "ID of the main subnet"
 }
