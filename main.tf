@@ -19,15 +19,6 @@ output "aws_account_id" {
 
 resource "aws_s3_bucket" "orbit_storage" {
   bucket_prefix = "orbit-storage-"
-
-  tags = {
-    name      = "Orbit Labs Storage"
-    managedBy = "Spacelift"
-    mission   = "First Launch"
-    project   = "Orbit-labs"
-  }
-}
-
 tags = {
   name        = "Orbit Labs Storage"
   managedBy   = "Spacelift"
@@ -35,3 +26,5 @@ tags = {
   project     = "Orbit-labs"
   environment = "demo"
 }
+}
+
