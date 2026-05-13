@@ -11,21 +11,25 @@ provider "aws" {
   region = "us-east-1"
 }
 
-data "aws_caller_identity" "current" {}
-
-output "aws_account_id" {
-  value = data.aws_caller_identity.current.account_id
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+  tags = {
+    name    = "Orbit Labs VPC"
+    project = "Orbit-labs"
+  }
 }
 
-resource "aws_s3_bucket" "orbit_storage" {
-  bucket_prefix = "orbit-storage-"
-tags = {
-  name        = "Orbit Labs Storage"
-  managedBy   = "Spacelift"
-  mission     = "First Launch"
-  project     = "Orbit-labs"
-  environment = "demo"
-}
+resource "aws_subnet" "main" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "us-east-1a"
+  tags = {
+    name    = "Orbit Labs Subnet"
+    project = "Orbit-labs"
+  }
 }
 
-
+output "subnet_id" {
+  value       = aws_subnet.main.id
+  description = "ID of the main subnet"
+}
