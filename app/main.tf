@@ -16,8 +16,8 @@ resource "aws_security_group" "app" {
   vpc_id      = data.aws_vpc.selected.id
 
   tags = {
-  name    = "Orbit Labs VPC"
-  project = "Orbit-labs"
-  owner   = "Saturnhead"
+    name    = "Orbit Labs VPC"
+    project = "Orbit-labs"
+    owner   = "Saturnhead"
   }
 }
